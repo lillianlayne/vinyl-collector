@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+    <h1><em>add record</em>
+    </h1>
+        <div class="grid">
+            <div class="row">
+
+                <form class="col-6" action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit!" class="btn btn-primary">
+                </form>
+            </div>
+            </div>
+        </div>
+{% endblock content %}

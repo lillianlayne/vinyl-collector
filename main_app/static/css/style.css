@@ -1,0 +1,121 @@
+:root {
+    --red: #6A0C04 ;
+    --brown: #AA7B4F ;
+    --neutral: #CABFAD ;
+    --blue: #3A3F5F ;
+    --text-100: #32312D ;
+}
+
+body {
+    background: #E7E6E2 ;
+    color: var(--text-100)
+}
+
+a {
+    text-decoration: none;
+    font-size: 12px !important;
+}
+
+.nav {
+    position: relative;
+    border-bottom: 1px solid var(--neutral)
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: var(--brown) !important;
+}
+
+.nav-links {
+    gap: 24px;
+}
+
+.link-primary {
+    text-transform: uppercase;
+    font-size: 10px ;
+    font-weight: 500;
+    letter-spacing: .12em;
+    color: var(--brown) !important
+}
+
+.record-card {
+    border: none !important;
+    background: none !important;
+    color: var(--text-100) !important
+}
+
+.card-image-placeholder-vinyl {
+    display: flex;
+    position: relative;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.card-image-placeholder {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background: #CABFAD;
+}
+
+.vinyl-object {
+    height: 80%;
+    aspect-ratio: 1/1;
+    background: black;
+    border-radius: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.card-image-placeholder-2 {
+    height: 90%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    background: var(--blue)
+}
+
+.vinyl-details {
+    width: 90%;
+}
+
+p {
+    margin: 0 !important
+}
+
+.placeholder {
+    aspect-ratio: 1/1
+}
+
+label {
+    font-size: 14px;
+    font-weight: 200;
+}
+
+td {
+    background: none;
+    border: none;
+}
+
+tr {
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    width: 100%;
+}
+
+input {
+    background: none;
+    border: 1px solid var(--neutral);
+    border-radius: 8px;
+    width: 100%;
+    margin: 0 0 20px 0
+}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container grid my-5">
+    <div class="row">
+        <div class="col-6 d-flex flex-column">
+            <div class="card-image-placeholder-vinyl">
+                <div class="card-image-placeholder-2"></div>
+                <div class="vinyl-object"></div>
+            </div>
+            <div class="vinyl-details d-flex flex-column">
+                <div class="container-fluid d-flex justify-content-between">
+                    <h4>{{ vinyl.name }}</h3>
+                        <p>{{ vinyl.artist }}</p>
+                </div>
+                <div class="container-fluid">
+                    <p class="small">Release Year: {{ vinyl.release_year }}</p>
+                    <p class="small">Track Count: {{ vinyl.song_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
