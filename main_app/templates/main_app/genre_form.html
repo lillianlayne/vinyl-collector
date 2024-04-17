@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    {% for genre in model %}
+    {{ genre.name }}
+    {% endfor %}
+</div>
+<div class="container">
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="add genre">
+    </form>
+</div>
+{% endblock content %}

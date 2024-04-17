@@ -1,30 +1,32 @@
 {% load django_bootstrap5 %}
 {% load static %}
+{# djlint:off H030, H031, T001#}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-   <div class="container-fluid nav sticky-top d-flex justify-content-between px-5 py-3 align-items-center">
-    <div class="links nav-links d-flex justify-content-start">
-      <a class="link-primary" href="{% url "index" %}">view all</a>
-      <a class="link-primary" href="{% url "vinyls_create" %}">add records</a>
+  </head>
+  <body>
+    <div class="container-fluid nav sticky-top d-flex justify-content-between px-5 py-3 align-items-center">
+      <div class="links nav-links d-flex justify-content-start">
+        <a class="link-primary" href="{% url "index" %}">view all</a>
+        <a class="link-primary" href="{% url "about" %}">about</a>
+      </div>
+      <div class="logo">
+        <a class="logo" href="{% url "home" %}">
+          <em>vinyl</em>pro
+        </a>
+      </div>
+      <div class="user-controls d-flex nav-links justify-content-end">
+        <a class="link-primary" href="{% url "vinyls_create" %}">add records</a>
+        <a href="{% url "genre_create" %}" class="link-primary">add genres</a>
+      </div>
     </div>
-    <div class="logo">
-      <em>vinyl</em>pro
-    </div>
-    <div class="user-controls d-flex nav-links justify-content-end">
-      <a class="link-primary" href="{% url "about" %}">about</a>
-    </div>
-    
-   </div>
-        {% block content %}
-        {% endblock %}
-</body>
+    {% block content %}{% endblock content %}
+  </body>
 </html>

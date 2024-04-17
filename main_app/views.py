@@ -1,9 +1,23 @@
-from django.shortcuts import render
+import uuid
+import boto3
+import os
+
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .models import Vinyl
-# Create your views here.
+from django.views.generic import ListView, DetailView
+from .models import Vinyl, Genre, Photo
+from .forms import SongsForm
+
+# All views
 def home(request):
-    return render(request, 'home.html')
+    vinyls = Vinyl.objects.all()
+    genres = Genre.objects.all()
+    vinyl = [vinyls[0], vinyls[1], vinyls[2], vinyls[3]]
+    
+    return render(request, 'home.html', {
+        'vinyls': vinyl,
+        'genres': genres
+    })
 
 def about(request):
     return render(request, 'about.html')
@@ -16,11 +30,72 @@ def vinyls_index(request):
 
 def vinyls_detail(request, vinyl_id):
     vinyl = Vinyl.objects.get(id=vinyl_id)
+    songs_form = SongsForm()
+    id_list = vinyl.genres.all().values_list('id')
+    non_genres = Genre.objects.exclude(id__in=id_list)
+    genre_list = Genre.objects.all()
+    print(vinyl.songs_set.all)
     return render(request, 'vinyls/detail.html', {
-        'vinyl': vinyl
+        'vinyl': vinyl, 'songs_form': songs_form, 'genres': non_genres, 'genre_list': genre_list
     })
+
+def add_song(request, vinyl_id):
+    form = SongsForm(request.POST)
+    if form.is_valid():
+        new_song = form.save(commit=False)
+        new_song.vinyl_id = vinyl_id
+        new_song.save()
+        
+    return redirect('detail', vinyl_id)
+
+def assoc_genre(request, vinyl_id, genre_id):
+    Vinyl.objects.get(id=vinyl_id).genres.add(genre_id)
+    return redirect('detail', vinyl_id=vinyl_id)
+
+def add_photo(request, vinyl_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file: 
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+
+        try: 
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f'{os.environ['S3_BASE_URL']}{bucket}/{key}'
+            Photo.objects.create(url=url, vinyl_id=vinyl_id)
+        except Exception as e:
+            print('an error occurred while upload file')
+            print(e)
+    return redirect('detail', vinyl_id=vinyl_id)
+
     
+# Classes for vinyls
 class VinylCreate(CreateView):
     model = Vinyl
     fields = '__all__'
     success_url = '/vinyls'
+
+class VinylsUpdate(UpdateView):
+    model = Vinyl
+    fields = ['name', 'artist', 'release_year']
+
+class VinylDelete(DeleteView):
+    model = Vinyl
+    success_url = '/vinyls'
+
+
+# Classes for genres
+class GenreList(ListView):
+    model = Genre
+
+class GenreDetail(DetailView):
+    model = Genre
+
+class GenreCreate(CreateView):
+    model = Genre
+    fields = '__all__'
+    success_url = '/genres/create'
+
+class GenreDelete(DeleteView):
+    model = Genre
+    success_url = '/genres'

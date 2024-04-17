@@ -10,7 +10,7 @@
         <div class="row">
             {% for vinyl in vinyls %}
             <a href="{% url "detail" vinyl.id %}" class="link-info record-card col-3 d-flex flex-column my-4 my-md-3 my-sm-3">
-                <img src="" class="placeholder mb-2" alt="">
+                <img src="" class="placeholder mb-2 clearfix" alt="">
                     <div class="card-body">
                         <h6 class="card-title">{{ vinyl.name }}</h6>
                         <div class="card-text small">{{ vinyl.artist }}</div>

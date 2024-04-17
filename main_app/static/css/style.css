@@ -3,12 +3,13 @@
     --brown: #AA7B4F ;
     --neutral: #CABFAD ;
     --blue: #3A3F5F ;
-    --text-100: #32312D ;
+    --text-100: #E7E6E2 ;
 }
 
-body {
-    background: #E7E6E2 ;
-    color: var(--text-100)
+body, html {
+    background: #32312D ;
+    color: var(--text-100);
+    height: 100vh
 }
 
 a {
@@ -26,7 +27,7 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 18px;
+    font-size: 18px !important;
     color: var(--brown) !important;
 }
 
@@ -40,6 +41,28 @@ a {
     font-weight: 500;
     letter-spacing: .12em;
     color: var(--brown) !important
+}
+
+.relative {
+    position: relative
+}
+
+.header-logo {
+    font-size: 25vmin;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0%;
+}
+
+.card-image-placeholder-album {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--blue);
+    margin-top: 25vmin;
+    z-index: 1
 }
 
 .record-card {
@@ -60,6 +83,13 @@ a {
     height: 100%;
     aspect-ratio: 1 / 1;
     background: #CABFAD;
+}
+
+.square-image {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
 }
 
 .vinyl-object {
@@ -119,3 +149,95 @@ input {
     width: 100%;
     margin: 0 0 20px 0
 }
+
+
+.hidden {
+    display: none !important
+}
+
+.submit {
+    background: none;
+    border: none !important;
+    border-radius: 100%;
+}
+
+.song-form > input {
+    border: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.song-form {
+    padding: 1rem 0;
+    margin: 0;
+    border-bottom: 1px solid var(--neutral)
+}
+
+.secondary-color {
+    color: #9d9d9d !important;
+    letter-spacing: .12em;
+    font-size: 12px;
+}
+
+.song-container {
+    padding: .5rem 0;
+    margin: 0;
+    border-bottom: 1px solid var(--text-100);
+    text-transform: capitalize
+
+}
+
+.song-title, .song-time {
+    color: var(--text-100)
+}
+
+
+
+.subtitle-shown {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.delete-button {
+    border: none;
+    background: none;
+}
+
+.width-full {
+    width: 100%;
+}
+
+.non-active {
+    border: 1px solid var(--brown) !important;
+    color: var(--brown) !important;
+}
+
+.bubble-wrapper {
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    padding: 1px 13px;
+    border-radius: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .12em
+}
+
+.non-active {
+    margin: 0
+}
+
+.add-genre-title {
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    color: var(--brown);
+}
+
+.all-genres {
+    border-top: 1px solid var(--brown)
+}
+
