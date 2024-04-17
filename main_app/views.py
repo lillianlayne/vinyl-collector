@@ -13,6 +13,7 @@ def home(request):
     vinyls = Vinyl.objects.all()
     genres = Genre.objects.all()
     vinyl = [vinyls[0], vinyls[1], vinyls[2], vinyls[3]]
+    # display only the first 4 album covers, i could have done this with a function, this was my quick fix.
     
     return render(request, 'home.html', {
         'vinyls': vinyl,
@@ -53,18 +54,22 @@ def assoc_genre(request, vinyl_id, genre_id):
     return redirect('detail', vinyl_id=vinyl_id)
 
 def add_photo(request, vinyl_id):
+    # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
-    if photo_file: 
+    if photo_file:
         s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-
-        try: 
+        # just in case something goes wrong
+        try:
             bucket = os.environ['S3_BUCKET']
             s3.upload_fileobj(photo_file, bucket, key)
-            url = f'{os.environ['S3_BASE_URL']}{bucket}/{key}'
+            # build the full url string
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
             Photo.objects.create(url=url, vinyl_id=vinyl_id)
         except Exception as e:
-            print('an error occurred while upload file')
+            print('An error occurred uploading file to S3')
             print(e)
     return redirect('detail', vinyl_id=vinyl_id)
 

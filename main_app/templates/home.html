@@ -4,11 +4,24 @@
 
 <div class="container relative">
     <div class="header-logo"><em>vinyl</em>pro</div>
-    <div class="d-flex gap-2 container-fluid clearfix">
+    <div class="d-flex gap-2 container-fluid">
         {% for vinyl in vinyls %}    
-        <div class="card-image-placeholder-album clearfix">
-x            </div>
+            {% for photo in vinyl.photo_set.all %}
+            <div class="card-image-placeholder-album object-fit-cover">
+                <img src="{{ photo.url }}" alt="'vinyl photo" class="square-image-full object-fit-cover">
+            </div>
+            {% empty %}
+            <div class="card-image-placeholder-album">
+            </div>
+            {% endfor %}
         {% endfor %}
+    </div>
+    <div class="d-flex justify-content-between container">
+        <h3><em>your</em> records</h3>
+        <div class="">
+
+            <a class="py-1 underlined-link" href="{% url "index" %}"><em>view all</em></a>
+        </div>
     </div>
 </div>
 

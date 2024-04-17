@@ -3,11 +3,12 @@
     --brown: #AA7B4F ;
     --neutral: #CABFAD ;
     --blue: #3A3F5F ;
-    --text-100: #E7E6E2 ;
+    --text-100: #32312D ;
+    --text-200: #9d9d9d;
 }
 
 body, html {
-    background: #32312D ;
+    background: #E7E6E2 ;
     color: var(--text-100);
     height: 100vh
 }
@@ -17,6 +18,9 @@ a {
     font-size: 12px !important;
 }
 
+a:hover {
+    color: var(--brown) !important
+}
 .nav {
     position: relative;
     border-bottom: 1px solid var(--neutral)
@@ -44,7 +48,31 @@ a {
 }
 
 .relative {
-    position: relative
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image-wrapper {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+
+}
+
+.brown{
+    color: var(--brown)
+}
+.uppercase {
+    text-transform: capitalize
+}
+
+.ul {
+    list-style-type: decimal-leading-zero;
+    color: var(--text-100);
+    list-style-position: inside;
 }
 
 .header-logo {
@@ -53,15 +81,17 @@ a {
     text-align: center;
     width: 100%;
     position: absolute;
+    top:32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 0;
-    top: 0%;
 }
 
 .card-image-placeholder-album {
     width: 100%;
     aspect-ratio: 1 / 1;
     background: var(--blue);
-    margin-top: 25vmin;
+    margin-top: 15vmin;
     z-index: 1
 }
 
@@ -71,25 +101,26 @@ a {
     color: var(--text-100) !important
 }
 
-.card-image-placeholder-vinyl {
-    display: flex;
-    position: relative;
-    aspect-ratio: 1/1;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.card-image-placeholder {
-    height: 100%;
+.vinyl-image-wrapper {
+    width: 100%;
     aspect-ratio: 1 / 1;
-    background: #CABFAD;
+    object-fit: cover;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative
 }
 
 .square-image {
+    height: 90%;
+    width: 90%;
+    z-index: 1 !important;
+    position: relative
+}
+
+.square-image-full {
     height: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center;
+    width: 100%
 }
 
 .vinyl-object {
@@ -98,17 +129,16 @@ a {
     background: black;
     border-radius: 100%;
     position: absolute;
-    z-index: -1;
     top: 50%;
-    left: 60%;
+    left: 70%;
     transform: translate(-50%, -50%);
 }
 
-.card-image-placeholder-2 {
-    height: 90%;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    background: var(--blue)
+.underlined-link {
+    font-size: 15px !important;
+    color: var(--text-100);
+    border-bottom: 1px solid var(--text-100)
+
 }
 
 .vinyl-details {
@@ -171,7 +201,7 @@ input {
 .song-form {
     padding: 1rem 0;
     margin: 0;
-    border-bottom: 1px solid var(--neutral)
+    border-bottom: 1px solid var(--text-200)
 }
 
 .secondary-color {
@@ -183,7 +213,7 @@ input {
 .song-container {
     padding: .5rem 0;
     margin: 0;
-    border-bottom: 1px solid var(--text-100);
+    border-bottom: 1px solid var(--text-200);
     text-transform: capitalize
 
 }
@@ -192,7 +222,10 @@ input {
     color: var(--text-100)
 }
 
-
+.artist {
+    font-weight: 100 !important;
+    font-size: 22px;
+}
 
 .subtitle-shown {
     padding: 0 !important;
@@ -214,8 +247,8 @@ input {
 }
 
 .bubble-wrapper {
-    border: 1px solid var(--blue);
-    color: var(--blue);
+    border: 1px solid var(--brown);
+    color: var(--brown);
     padding: 1px 13px;
     border-radius: 50px;
     text-align: center;
@@ -234,7 +267,8 @@ input {
     font-size: 10px;
     font-weight: 500;
     letter-spacing: .12em;
-    color: var(--brown);
+    color: var(--text-200);
+    cursor: pointer;
 }
 
 .all-genres {

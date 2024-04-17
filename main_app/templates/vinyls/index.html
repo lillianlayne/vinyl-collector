@@ -3,14 +3,20 @@
 {% block content %}
 <div class="container my-5 d-flex flex-column">
     <div class="container-fluid d-flex align-items-baseline justify-content-between">
-        <h1><em>records</em></h1>
+        <h1><em>all</em>records</h1>
     </div>
 
     <div class="grid">
         <div class="row">
             {% for vinyl in vinyls %}
             <a href="{% url "detail" vinyl.id %}" class="link-info record-card col-3 d-flex flex-column my-4 my-md-3 my-sm-3">
+                {% for photo in vinyl.photo_set.all %}
+                <div class="card-image-placeholder mb-2 object-fit-cover">
+                    <img src="{{ photo.url }}" alt="'vinyl photo" class="square-image-full object-fit-cover">
+                </div>
+                {% empty %}
                 <img src="" class="placeholder mb-2 clearfix" alt="">
+                {% endfor %}
                     <div class="card-body">
                         <h6 class="card-title">{{ vinyl.name }}</h6>
                         <div class="card-text small">{{ vinyl.artist }}</div>
